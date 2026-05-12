@@ -2,7 +2,7 @@
 
 <h1>Next.js TypeScript Boilerplate</h1>
 
-A production-ready Next.js boilerplate with TypeScript, Tailwind CSS, and comprehensive code quality tools configured out of the box.
+Boilerplate Next.js siap produksi dengan TypeScript, Tailwind CSS, dan berbagai alat quality code yang telah dikonfigurasi sejak awal.
 
 </div>
 
@@ -16,126 +16,126 @@ A production-ready Next.js boilerplate with TypeScript, Tailwind CSS, and compre
 - **Git Hooks**: Husky + lint-staged
 - **Commit Convention**: Commitlint (Conventional Commits)
 
-## Getting Started
+## Memulai
 
-### 1. Clone or Download Repository
+### 1. Clone atau Unduh Repository
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/hilmifawwazsaad/NextJS-Boilerplate.git
 cd nextjs-tsx-boilerplate
 
-# Or download ZIP and extract it
+# Atau unduh ZIP dan ekstrak
 ```
 
-### 2. Install Dependencies
+### 2. Install Dependensi
 
 ```bash
 pnpm install
 ```
 
-### 3. Run Development Server
+### 3. Jalankan Development Server
 
 ```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the result.
+Buka [http://localhost:3000](http://localhost:3000) untuk melihat hasilnya.
 
-### 4. Available Scripts
+### 4. Script yang Tersedia
 
 ```bash
 # Development
-pnpm dev              # Start dev server
-pnpm build            # Build for production
-pnpm start            # Start production server
+pnpm dev              # Jalankan dev server
+pnpm build            # Build untuk produksi
+pnpm start            # Jalankan production server
 
 # Code Quality
-pnpm lint             # Run ESLint
-pnpm lint:strict      # ESLint with max 0 warnings
-pnpm lint:fix         # Auto-fix ESLint errors
-pnpm format:write     # Format with Prettier
-pnpm format:check     # Check formatting
-pnpm format           # Format + Lint + Strict check (all-in-one)
+pnpm lint             # Jalankan ESLint
+pnpm lint:strict      # ESLint dengan maksimal 0 warning
+pnpm lint:fix         # Perbaiki error ESLint secara otomatis
+pnpm format:write     # Format dengan Prettier
+pnpm format:check     # Periksa formatting
+pnpm format           # Format + Lint + Strict check (semua sekaligus)
 ```
 
-## File Naming Convention
+## Konvensi Penamaan File
 
-- `.tsx` - React components that return JSX
-- `.ts` - TypeScript files (utils, services, types)
-- `.css` - Stylesheets
+- `.tsx` - Komponen React yang mengembalikan JSX
+- `.ts` - File TypeScript (utils, services, types)
+- `.css` - Stylesheet
 
-## Features
+## Fitur
 
-### TypeScript Configuration
+### Konfigurasi TypeScript
 
-- Strict mode enabled for better type safety
-- Path aliases configured: `@/*` maps to `./src/*`
-- Example: `import Button from '@/components/Button'`
+- Strict mode diaktifkan untuk keamanan tipe yang lebih baik
+- Path alias terkonfigurasi: `@/*` mengarah ke `./src/*`
+- Contoh: `import Button from '@/components/Button'`
 
-### Auto-formatting on Save
+### Auto-formatting saat Menyimpan
 
-This project uses Prettier + ESLint with auto-formatting:
+Project ini menggunakan Prettier + ESLint dengan auto-formatting:
 
-- **On Save**: VSCode auto-formats (if configured in `.vscode/settings.json`)
-- **On Commit**: Husky + lint-staged auto-format staged files
-- **Manual**: Run `pnpm format`
+- **Saat Simpan**: VSCode otomatis memformat (jika dikonfigurasi di `.vscode/settings.json`)
+- **Saat Commit**: Husky + lint-staged otomatis memformat file yang di-stage
+- **Manual**: Jalankan `pnpm format`
 
 ### Git Hooks (Husky)
 
-Pre-configured git hooks for code quality:
+Git hooks yang telah dikonfigurasi untuk menjaga kualitas kode:
 
-- **pre-commit**: Runs lint-staged (format + lint staged files)
-- **commit-msg**: Validates commit message format
-- **pre-push**: Runs strict lint check before pushing
-- **post-merge**: Auto-installs dependencies after merge
+- **pre-commit**: Menjalankan lint-staged (format + lint file yang di-stage)
+- **commit-msg**: Memvalidasi format pesan commit
+- **pre-push**: Menjalankan strict lint check sebelum push
+- **post-merge**: Otomatis install dependensi setelah merge
 
-### Commit Message Convention
+### Konvensi Pesan Commit
 
-This project uses [Conventional Commits](https://www.conventionalcommits.org/):
+Project ini menggunakan [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
-feat: add new feature
-fix: resolve bug
-docs: update documentation
-style: format code
-refactor: restructure code
-test: add tests
-chore: update dependencies
-ci: update CI/CD
-perf: performance improvements
-revert: revert changes
+feat: tambah fitur baru
+fix: perbaiki bug
+docs: perbarui dokumentasi
+style: format kode
+refactor: restrukturisasi kode
+test: tambah pengujian
+chore: perbarui dependensi
+ci: perbarui CI/CD
+perf: peningkatan performa
+revert: kembalikan perubahan
 ```
 
-Commitlint will reject commits that don't follow this format.
+Commitlint akan menolak commit yang tidak mengikuti format ini.
 
-## Code Quality Setup
+## Pengaturan Code Quality
 
-### ESLint + Prettier Integration
+### Integrasi ESLint + Prettier
 
-- ESLint validates code quality and catches errors
-- Prettier formats code consistently
-- Both work together without conflicts
-- TypeScript files are automatically linted and formatted
+- ESLint memvalidasi kualitas kode dan mendeteksi error
+- Prettier memformat kode secara konsisten
+- Keduanya bekerja bersama tanpa konflik
+- File TypeScript otomatis di-lint dan diformat
 
-### VSCode Integration
+### Integrasi VSCode
 
-The `.vscode/settings.json` is pre-configured with:
+`.vscode/settings.json` telah dikonfigurasi dengan:
 
-- Auto-format on save
-- ESLint auto-fix on save
+- Auto-format saat menyimpan
+- ESLint auto-fix saat menyimpan
 - TypeScript intellisense
 - Tailwind CSS autocomplete
 
-## Learn More
+## Pelajari Lebih Lanjut
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [pnpm Documentation](https://pnpm.io/)
+- [Dokumentasi Next.js](https://nextjs.org/docs)
+- [Dokumentasi TypeScript](https://www.typescriptlang.org/docs/)
+- [Dokumentasi Tailwind CSS](https://tailwindcss.com/docs)
+- [Dokumentasi pnpm](https://pnpm.io/)
 
-## Deploy on Vercel
+## Deploy di Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+Cara termudah untuk mendeploy aplikasi Next.js adalah menggunakan [Platform Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Lihat [dokumentasi deployment Next.js](https://nextjs.org/docs/app/building-your-application/deploying) untuk detail lebih lanjut.
