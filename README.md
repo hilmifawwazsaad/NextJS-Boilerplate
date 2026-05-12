@@ -1,6 +1,10 @@
-# Next.js TypeScript Boilerplate
+<div align="center">
+
+<h1>Next.js TypeScript Boilerplate</h1>
 
 A production-ready Next.js boilerplate with TypeScript, Tailwind CSS, and comprehensive code quality tools configured out of the box.
+
+</div>
 
 ## Tech Stack
 
@@ -55,22 +59,6 @@ pnpm format:check     # Check formatting
 pnpm format           # Format + Lint + Strict check (all-in-one)
 ```
 
-## Project Structure
-
-```
-├── src/
-│   ├── app/              # App Router pages
-│   │   ├── page.tsx      # Home page (/)
-│   │   ├── layout.tsx    # Root layout
-│   │   └── globals.css   # Global styles
-│   ├── components/       # Reusable components (.tsx)
-│   ├── lib/              # Utility functions (.ts)
-│   ├── types/            # TypeScript type definitions
-│   └── services/         # API services (.ts)
-├── public/               # Static assets
-└── .husky/               # Git hooks
-```
-
 ## File Naming Convention
 
 - `.tsx` - React components that return JSX
@@ -79,13 +67,13 @@ pnpm format           # Format + Lint + Strict check (all-in-one)
 
 ## Features
 
-### ✅ TypeScript Configuration
+### TypeScript Configuration
 
 - Strict mode enabled for better type safety
 - Path aliases configured: `@/*` maps to `./src/*`
 - Example: `import Button from '@/components/Button'`
 
-### ✅ Auto-formatting on Save
+### Auto-formatting on Save
 
 This project uses Prettier + ESLint with auto-formatting:
 
@@ -93,7 +81,7 @@ This project uses Prettier + ESLint with auto-formatting:
 - **On Commit**: Husky + lint-staged auto-format staged files
 - **Manual**: Run `pnpm format`
 
-### ✅ Git Hooks (Husky)
+### Git Hooks (Husky)
 
 Pre-configured git hooks for code quality:
 
@@ -102,7 +90,7 @@ Pre-configured git hooks for code quality:
 - **pre-push**: Runs strict lint check before pushing
 - **post-merge**: Auto-installs dependencies after merge
 
-### ✅ Commit Message Convention
+### Commit Message Convention
 
 This project uses [Conventional Commits](https://www.conventionalcommits.org/):
 
