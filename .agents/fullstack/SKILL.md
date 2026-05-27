@@ -4,6 +4,8 @@ description: Build fullstack features in a single Next.js (App Router) TypeScrip
 license: MIT
 ---
 
+> Read `.agents/software-principles/SKILL.md` first — naming, function design, and engineering principles apply to all code here.
+
 ## Pre-Code Checklist
 
 1. Map data flow: origin (DB / external API / form input)
@@ -35,26 +37,21 @@ Apply all rules from the **frontend skill**. Key additions:
 
 ## Server Actions (`app/**/actions.ts`)
 
-```ts
-'use server';
-// 1. Validate input (zod or manual)
-// 2. Check auth/session
-// 3. Call service layer — no business logic inline
-// 4. revalidatePath() or revalidateTag() after mutation
-// Return: { success: boolean, data?: T, errors?: Record<string, string[]> }
-```
+File must start with `'use server'` directive. Required order:
+
+1. Validate input (zod or manual)
+2. Check auth/session
+3. Call service layer — no business logic inline
+4. `revalidatePath()` or `revalidateTag()` after mutation
+5. Return a typed result — follow project convention for shape (success flag, errors map, or throw)
 
 ## Route Handlers (`app/api/**/route.ts`)
 
-Response envelope (type it):
+Response shape — follow existing project convention. If none exists, pick one and apply consistently. Never mix shapes across handlers. Type the envelope — never return raw untyped objects.
 
-```ts
-// Success: { success: true,  data: T,    message: string, error: null }
-// Error:   { success: false, data: null, message: string, error: { code: string, details?: {field: string, message: string}[] } }
-```
+Required regardless of shape: success/error must be distinguishable · validation errors include field-level detail · no stack traces or internal paths exposed.
 
-HTTP codes: `200/201/204` success · `422` validation · `401` unauth · `403` forbidden · `409` conflict · `500` no stack trace.
-Handler pattern: validate → auth check → service call → return envelope.
+Use `422` (not `400`) for validation failures. Handler order: validate input → auth check → service call → return envelope.
 
 ## Data Layer (`lib/db.ts` · `services/*.ts`)
 
@@ -67,7 +64,6 @@ Handler pattern: validate → auth check → service call → return envelope.
 
 - Type all request/response shapes with exported `interface` or `type`.
 - `NextRequest` / `NextResponse` from `next/server` for Route Handlers.
-- No `any` — `unknown` + narrowing for untyped external data.
 
 ## Security (non-negotiable)
 
@@ -81,8 +77,6 @@ Handler pattern: validate → auth check → service call → return envelope.
 
 - DB queries or secrets in Client Components / `NEXT_PUBLIC_` vars.
 - Trust unvalidated input in actions or handlers.
-- `useEffect` for data when a Server Component works.
 - Sensitive data as Client Component props (exposed in JS bundle).
 - Business logic inline in route handlers or page components.
 - Skip any of the four UI states.
-- `any` type · `.jsx` / `.js` extensions.

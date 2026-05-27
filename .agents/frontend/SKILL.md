@@ -4,6 +4,8 @@ description: Generate production-grade Next.js (App Router) TSX/TS code. Use for
 license: MIT
 ---
 
+> Read `.agents/software-principles/SKILL.md` first — naming, function design, and engineering principles apply to all code here.
+
 ## Pre-Code Checklist
 
 1. All four states: loading · error · empty · ideal
@@ -28,9 +30,8 @@ Extensions: `.tsx` for JSX · `.ts` for hooks and utilities.
 - Prefer `function Foo({ id }: Props): React.JSX.Element` over `React.FC`.
 - Children → `React.PropsWithChildren<Props>`.
 - Extend HTML elements → `React.ComponentProps<'button'>`, not manual re-typing.
-- Event types: `React.ChangeEvent<HTMLInputElement>` · `React.FormEvent<HTMLFormElement>` · `React.MouseEvent<HTMLButtonElement>`
+- Type all event handlers explicitly — never infer from `any`.
 - Shared types → `types/` or co-located `*.types.ts`.
-- No `any` — use `unknown` + narrowing or generics.
 
 ## Four States (all required)
 
@@ -46,6 +47,7 @@ Extensions: `.tsx` for JSX · `.ts` for hooks and utilities.
 - Server: `async` RSC + `fetch` with `{ next: { revalidate: N } }` or `cache()` for dedup.
 - Client: `useEffect` with cleanup — only when Server Component is impossible.
 - Never `useEffect` for data when a Server Component works.
+- `useEffect` deps array must be exhaustive — no suppression comments. Extract stable refs with `useCallback`/`useMemo` if needed.
 
 ## Styling
 
@@ -61,7 +63,6 @@ Extensions: `.tsx` for JSX · `.ts` for hooks and utilities.
 - Semantic HTML + ARIA. All interactive elements keyboard-accessible.
 - Stable `key` props — never array index for dynamic lists.
 - Env vars server-only unless `NEXT_PUBLIC_` prefix.
-- Descriptive names — no abbreviations except `id`, `src`, `alt`.
 
 ## Never Do
 
@@ -71,3 +72,4 @@ Extensions: `.tsx` for JSX · `.ts` for hooks and utilities.
 - Invented design tokens or broken folder conventions.
 - Skip any of the four states.
 - `key={index}` on dynamic lists.
+- Suppress `useEffect` exhaustive-deps lint rule.

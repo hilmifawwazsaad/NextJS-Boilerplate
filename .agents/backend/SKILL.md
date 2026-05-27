@@ -1,8 +1,10 @@
 ---
 name: backend
-description: Design and generate external backend API code (any language/framework: Go, Rust, Python, PHP, JavaScript, Ruby, etc.) that serves a Next.js TSX frontend. Use for API endpoints, auth, validation, and data modeling on a separate backend server.
+description: 'Design and generate external backend API code (any language/framework — Go, Rust, Python, PHP, JavaScript, Ruby, etc.) that serves a Next.js TSX frontend. Use for API endpoints, auth, validation, and data modeling on a separate backend server.'
 license: MIT
 ---
+
+> Read `.agents/software-principles/SKILL.md` first — naming, function design, and engineering principles apply to all code here.
 
 ## Pre-Code Checklist
 
@@ -13,26 +15,14 @@ license: MIT
 
 ## Response Envelope
 
-```json
-{ "success": true,  "data": "<payload>", "message": "OK",        "error": null }
-{ "success": false, "data": null,         "message": "<summary>", "error": { "code": "<CODE>", "details": [{ "field": "", "message": "" }] } }
-```
+Shape may vary per project or company convention — follow existing convention if one exists. If starting fresh, pick one shape and apply it consistently throughout the entire project. Never mix shapes across endpoints.
 
-## HTTP Status Codes
+Required regardless of shape:
 
-| Code | When                                             |
-| ---- | ------------------------------------------------ |
-| 200  | GET · PUT · PATCH success                        |
-| 201  | POST created                                     |
-| 204  | DELETE success (no body)                         |
-| 400  | Malformed request                                |
-| 401  | Missing / invalid auth                           |
-| 403  | Authenticated but forbidden                      |
-| 404  | Resource not found                               |
-| 409  | Conflict / duplicate                             |
-| 422  | Validation failure + `error.details` array       |
-| 429  | Rate limited                                     |
-| 500  | Server error — safe message only, no stack trace |
+- Success and error responses must be distinguishable (boolean flag, HTTP status, or dedicated error field)
+- Validation errors must include field-level detail, not just a generic message
+- Error responses must never expose stack traces, query strings, or internal paths
+- Type the envelope — never return untyped `any` or raw ORM objects
 
 ## Design Rules
 
@@ -42,6 +32,7 @@ license: MIT
 - **Auth** — `Authorization: Bearer <token>` (JWT/opaque) or HTTP-only cookie (same parent domain).
 - **Pagination** — all list endpoints: `data: { items: T[], pagination: { page, limit, totalItems, totalPages } }`.
 - **CORS** — exact origin only (`http://localhost:3000` dev, exact domain prod). Never `*` with credentials.
+- **Status codes** — use `422` (not `400`) for validation failures; `500` responses must never include stack traces or internal details.
 - **Naming** — pick camelCase or snake_case; consistent throughout the project.
 - **Docs** — expose OpenAPI spec at `/api/docs` or `/openapi.json` when feasible.
 
@@ -50,7 +41,6 @@ license: MIT
 - Route handlers thin — business logic in service/use-case layer.
 - Global error handler → catches all unhandled errors → safe 500.
 - DB connection pooling. Async/non-blocking I/O.
-- Cache read-heavy data (Redis or in-memory).
 
 ## Security (non-negotiable)
 
@@ -64,8 +54,5 @@ license: MIT
 
 ## Never Do
 
-- Expose stack traces, DB errors, or internal details to client.
 - Trust unvalidated client input or hardcode secrets.
-- Skip pagination on list endpoints.
-- Wildcard CORS `*` with credentials.
 - Business logic directly in route handlers.
