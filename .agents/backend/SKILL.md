@@ -4,7 +4,7 @@ description: 'Design and generate external backend API code (any language/framew
 license: MIT
 ---
 
-> Read `.agents/software-principles/SKILL.md` first — naming, function design, and engineering principles apply to all code here.
+> Read `.agents/software-principles/SKILL.md` first.
 
 ## Pre-Code Checklist
 
@@ -48,7 +48,7 @@ Required regardless of shape:
 - Parameterized queries/ORM — no string-concatenated SQL.
 - Hash passwords (bcrypt/argon2 or language equivalent).
 - Rate-limit auth endpoints (login, register, password reset).
-- Limit request body size (e.g., 1 MB).
+- Limit request body size
 - Security headers in production (X-Frame-Options, CSP, HSTS).
 - Validate all input at boundary before processing.
 

@@ -4,7 +4,7 @@ description: 'Baseline design philosophy for distinctive, production-grade UI. U
 license: MIT
 ---
 
-> Read `.agents/software-principles/SKILL.md` and `.agents/frontend/SKILL.md` first — all their rules apply here.
+> Read `.agents/software-principles/SKILL.md` and `.agents/frontend/SKILL.md` first.
 
 ## Design Thinking
 

@@ -4,7 +4,7 @@ description: Build fullstack features in a single Next.js (App Router) TypeScrip
 license: MIT
 ---
 
-> Read `.agents/software-principles/SKILL.md` first — naming, function design, and engineering principles apply to all code here.
+> Read `.agents/software-principles/SKILL.md` first.
 
 ## Pre-Code Checklist
 
